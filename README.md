@@ -238,11 +238,6 @@ compdef _jj jj
 jj debug completion --fish | source
 ```
 
-### Xonsh
-```shell script
-source-bash $(jj debug completion)
-```
-
 
 ## Getting started
 
