@@ -487,6 +487,12 @@ fn create_remote_callbacks(progress_cb: Option<&mut dyn FnMut(&Progress)>) -> Re
                 }
             }
         }
+        if allowed_types.contains(git2::CredentialType::USER_PASS_PLAINTEXT) {
+            let Ok(config) = git2::Config::open_default();
+            if let Ok(cred) = git2::Cred::credential_helper(config, _url) {
+                return cred;
+            }
+        }
         git2::Cred::default()
     });
     callbacks
